@@ -1,0 +1,13 @@
+echo FIRST
+
+cat <<EOS 
+ssh -L 4000:localhost:4000 hippie@192.168.1.24 socat TCP-LISTEN:4000,fork UNIX-CONNECT:/tmp/pulse-IKlqoTlOjLEL/native 
+EOS
+
+echo THEN
+
+cat <<EOS
+PULSE_SERVER=localhost:4000 paplay test.wav
+EOS
+
+

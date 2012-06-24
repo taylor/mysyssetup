@@ -1,0 +1,7 @@
+#!/bin/bash
+grep -q closed /proc/acpi/button/lid/*/state
+if [ $? = 0 ]
+then
+  s2ram
+  #hibernate-ram -k -f
+fi

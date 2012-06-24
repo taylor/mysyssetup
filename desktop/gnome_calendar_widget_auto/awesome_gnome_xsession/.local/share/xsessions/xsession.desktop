@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=XsessionSimple
+Comment=This runs ~/.xsession
+Exec=/etc/X11/Xsession

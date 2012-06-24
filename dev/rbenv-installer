@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+shopt -s extglob
+PS4="+ \${BASH_SOURCE##\${rvm_path:-}} : \${FUNCNAME[0]:+\${FUNCNAME[0]}()}  \${LINENO} > "
+export PS4
+set -o errtrace
+set -o errexit
+
+log()  { printf "$*\n" ; return $? ;  }
+
+fail() { log "\nERROR: $*\n" ; exit 1 ; }
+
+
+
+RBENV_HOME=$HOME/.rbenv
+
+git clone git://github.com/sstephenson/rbenv.git ${RBENV_HOME}
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+
+git clone git://github.com/sstephenson/ruby-build.git ~/ruby-build-install
+cd ~/ruby-build-install && chmod +x install.sh
+PREFIX=${RBENV_HOME} ./install.sh
+
+exec $SHELL

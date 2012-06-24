@@ -1,0 +1,7 @@
+#!/bin/sh
+
+while true ; do
+  D=$(date +"%A %B %d, %Y %l:%M %p")
+  echo "0 widget_tell mystatusbar clock text $D" | awesome-client
+  sleep 1
+done
