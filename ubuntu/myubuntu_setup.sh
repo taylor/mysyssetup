@@ -31,3 +31,18 @@ sudo apt-get remove --purge network-manager-gnome network-manager
 ## remove apport or disable it
 sudo aptitude remove apport
 # sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
+
+
+## charles proxy
+##
+wget -q -O - http://www.charlesproxy.com/packages/apt/PublicKey | sudo apt-key add -
+echo 'deb http://www.charlesproxy.com/packages/apt/ charles-proxy main' | sudo tee -a /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install charles-proxy
+
+
+## power
+sudo aptitude install uswusp
+# copy lid script
+sudo mkdir -p /etc/acpi/local
+sudo cp ../power/etc/acpi/local/lid.sh.pre /etc/acpi/local
