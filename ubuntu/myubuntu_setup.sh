@@ -26,7 +26,10 @@ sudo add-apt-repository ppa:mactel-support
 
 ## replace network-manager with wicd
 sudo aptitude install wicd wicd-curses wicd-cli wicd-gtk wpasupplicant
-sudo apt-get remove --purge network-manager-gnome network-manager
+#sudo apt-get remove --purge network-manager-gnome network-manager
+# or disable both... they both suck in different ways
+sudo update-rc.d -f wicd remove
+echo "manual" | sudo tee /etc/init/network-manager.override
 
 ## remove apport or disable it
 sudo aptitude remove apport
@@ -46,3 +49,14 @@ sudo aptitude install uswusp
 # copy lid script
 sudo mkdir -p /etc/acpi/local
 sudo cp ../power/etc/acpi/local/lid.sh.pre /etc/acpi/local
+
+## Agenda script
+sudo apt-get install ccal googlecl
+
+
+## auto-mount
+## aptitude install halevt
+## create policykit -- http://superuser.com/questions/53978/ubuntu-automatically-mount-external-drives-to-media-label-on-boot-without-a-u
+##                     https://awesome.naquadah.org/wiki/Automounting
+
+
